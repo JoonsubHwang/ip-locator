@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.sass'
 import Map from '../components/Map';
 import { useRouter } from 'next/router';
 
-export default function Home({ ip, geoData, isp }) {
+export default function Home({ ip, geoData, isp, code }) {
 
   const router = useRouter();
   const [portraitMode, setPortraitMode] = useState();
@@ -48,6 +48,12 @@ export default function Home({ ip, geoData, isp }) {
 
           </form>
 
+          {code !== undefined &&
+          <div className={styles.errorInfo}>
+            <p className={styles.red}><span className={styles.message}>Invalid IP Address: </span>{ip}</p>
+            <p>Please search a valid IP address.</p>
+          </div>}
+
           {geoData !== undefined &&
           <div className={styles.summary}>
 
@@ -77,25 +83,6 @@ export default function Home({ ip, geoData, isp }) {
               <p>{isp}</p>
             </div>
 
-            {/* {[
-              { name: 'IP ADDRESS', value: returnIP },
-              { name: 'LOCATION',   value: `${geoData.city}, ${geoData.region} ${geoData.postalCode}` },
-              { name: 'TIMEZONE',   value: `UTC ${geoData.timezone}` },
-              { name: 'ISP',        value: isp }
-            ].map((data, i) =>
-              {
-                <div key={'dataDisplay-' + i}>
-                  {portraitMode && (i > 0) &&
-                    <div className={styles.divider}/>}
-
-                  <div className={styles.dataDisplay}>
-                    <small>{data.name}</small>
-                    <p>{data.value}</p>
-                  </div>
-                </div>
-              } // TODO: wrap? key?
-            )} */}
-
           </div>}
 
         </div>
@@ -116,9 +103,12 @@ export async function getServerSideProps(context) {
   const res = await fetch('https://geo.ipify.org/api/v2/country,city?apiKey=at_2PRS5e7SqDvOlKY8KR1YDwqGmrD7c' + ipQuery);
   const data = await res.json();
 
+  if (data.code === 422)
+    return { props: { ip: context.query.ip, code: 422 }};
+
   return { props: {
     ip: data.ip,
     geoData: data.location,
     isp: data.isp
-  }}
+  }};
 }

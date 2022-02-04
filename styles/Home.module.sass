@@ -44,6 +44,7 @@
                 width: 3.3rem
                 background: black
 
+    .errorInfo,
     .summary
         $margin: 1rem
         position: absolute
@@ -52,16 +53,40 @@
         left: $margin
         border-radius: 1rem
         width: calc(100vw - (2 * $margin))
+        height: 7rem
         background: white
         padding: 1rem
-        display: flex
-        flex-direction: column
         box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.2)
+        display: flex
+        font-weight: 500
 
         @media screen and (min-width: 800px)
             top: 12rem
             left: calc(50vw - (400px - $margin))
             width: calc(800px - (2 * $margin))
+
+    .errorInfo
+        flex-direction: column
+        place-content: center
+    
+        p
+            margin: auto
+            text-align: center
+            max-width: 90%
+
+            &.red
+                overflow: hidden
+                white-space: nowrap
+                text-overflow: ellipsis
+                color: #ff3030
+
+                .message
+                    color: $dark-gray
+
+    .summary
+        flex-direction: column
+
+        @media screen and (min-width: 800px)
             flex-direction: row
 
         .dataDisplay
@@ -74,11 +99,9 @@
             small
                 display: block
                 font-size: .8rem
-                font-weight: 500
                 color: $gray
 
             p
-                font-weight: 500
                 overflow-y: auto
                 -ms-overflow-style: none
                 scrollbar-width: none
