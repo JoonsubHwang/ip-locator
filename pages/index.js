@@ -97,14 +97,15 @@ export default function Home({ ip, geoData, isp, code }) {
 
 export async function getServerSideProps(context) {
 
-  const ipQuery = context.query.ip ?
-                    `&ipAddress=${context.query.ip}`
-                    : '';
-  const res = await fetch('https://geo.ipify.org/api/v2/country,city?apiKey=at_2PRS5e7SqDvOlKY8KR1YDwqGmrD7c' + ipQuery);
+  const ip = context.query.ip;
+  const query = ip ?
+                  `&ipAddress=${ip}&domain=${ip}`
+                  : '';
+  const res = await fetch('https://geo.ipify.org/api/v2/country,city?apiKey=at_2PRS5e7SqDvOlKY8KR1YDwqGmrD7c' + query);
   const data = await res.json();
 
   if (data.code === 422)
-    return { props: { ip: context.query.ip, code: 422 }};
+    return { props: { ip: ip, code: 422 }};
 
   return { props: {
     ip: data.ip,
