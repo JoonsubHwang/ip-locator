@@ -1,8 +1,9 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion';
 import styles from '../styles/Home.module.sass'
 import Map from '../components/Map';
-import { useRouter } from 'next/router';
 
 export default function Home({ ip, geoData, isp, errorCode }) {
 
@@ -20,6 +21,11 @@ export default function Home({ ip, geoData, isp, errorCode }) {
     router.push(`/?ip=${event.target.querySelector('#searchIP').value}`);
     event.preventDefault();
   }
+
+  const arrowMotion = {
+    hover: { x: 5 },
+    click: { scale: 0.5 }
+  };
 
   return (
     <div className={styles.home}>
@@ -41,9 +47,14 @@ export default function Home({ ip, geoData, isp, errorCode }) {
 
             <input id='searchIP' placeholder='Search for IP address or domain' required defaultValue={ip}/>
 
-            <button>
-              <img alt='arrow-right' src={'icon-arrow.svg'} width={16} heigth={16}/>
-            </button>
+            <motion.button
+            initial={{}}
+            whileHover='hover'
+            whileTap='click'>
+              <motion.img 
+              alt='arrow-right' src={'icon-arrow.svg'} width={16} heigth={16}
+              variants={arrowMotion}/>
+            </motion.button>
 
           </form>
           
