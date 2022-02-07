@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.sass'
 import Map from '../components/Map';
@@ -42,7 +42,7 @@ export default function Home({ ip, geoData, isp, errorCode }) {
             <input id='searchIP' placeholder='Search for IP address or domain' required defaultValue={ip}/>
 
             <button>
-              <img alt='arrow-right' src={'icon-arrow.svg'} />
+              <img alt='arrow-right' src={'icon-arrow.svg'} width={16} heigth={16}/>
             </button>
 
           </form>

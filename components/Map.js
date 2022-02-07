@@ -50,7 +50,7 @@ export default function Map({ lat, lng, portraitMode }) {
     mapStyle='mapbox://styles/mapbox/streets-v11?optimize=true'
     mapboxApiAccessToken={MAPBOX_TOKEN}>
       <Marker latitude={lat} longitude={lng}>
-        <img className={styles.marker} src='/icon-location.svg' alt='Marker'/>
+        <img className={styles.marker} src='/icon-location.svg' alt='Marker' width={36} heigth={36}/>
       </Marker>
     </Mapbox>
   );
