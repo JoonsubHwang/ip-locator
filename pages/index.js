@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.sass'
 import Map from '../components/Map';
 import { useRouter } from 'next/router';
 
-export default function Home({ ip, geoData, isp, code }) {
+export default function Home({ ip, geoData, isp, errorCode }) {
 
   const router = useRouter();
   const [portraitMode, setPortraitMode] = useState();
@@ -29,7 +29,6 @@ export default function Home({ ip, geoData, isp, code }) {
         <meta name="description" content="Look up geological location of an IP address." />
         <link rel="icon" href="favicon-32x32.png" />
         <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet"/>
-        {/* <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script> TODO */}
       </Head>
 
       <main>
@@ -47,11 +46,11 @@ export default function Home({ ip, geoData, isp, code }) {
             </button>
 
           </form>
-
-          {code !== undefined &&
+          
+          {errorCode !== undefined &&
           <div className={styles.errorInfo}>
-            <p className={styles.red}><span className={styles.message}>Invalid IP Address: </span>{ip}</p>
-            <p>Please search a valid IP address.</p>
+            <p className={styles.red}><span className={styles.message}>Invalid IP Address / domain: </span>{ip}</p>
+            <p>Please search a valid IP address / domain.</p>
           </div>}
 
           {geoData !== undefined &&
@@ -104,8 +103,8 @@ export async function getServerSideProps(context) {
   const res = await fetch('https://geo.ipify.org/api/v2/country,city?apiKey=at_2PRS5e7SqDvOlKY8KR1YDwqGmrD7c' + query);
   const data = await res.json();
 
-  if (data.code === 422)
-    return { props: { ip: ip, code: 422 }};
+  if (data.code === 422 || data.code === 400)
+    return { props: { ip: ip, errorCode: data.code }};
 
   return { props: {
     ip: data.ip,
