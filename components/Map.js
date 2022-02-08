@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { default as Mapbox, Marker } from 'react-map-gl';
 import styles from '../styles/Map.module.sass';
 
-const MAPBOX_TOKEN = 'pk.eyJ1IjoiaDk3MTk0NzE5IiwiYSI6ImNreWFoczBpODA1a3kyb21yOHozdmI3NnUifQ.V5QWRpTENS1BCPZe92P6Hg'; // TODO use env var
+const MAPBOX_TOKEN = 'pk.eyJ1IjoiaDk3MTk0NzE5IiwiYSI6ImNreWFoczBpODA1a3kyb21yOHozdmI3NnUifQ.V5QWRpTENS1BCPZe92P6Hg';
 
 export default function Map({ lat, lng, portraitMode }) {  
 
