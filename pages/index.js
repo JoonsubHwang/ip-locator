@@ -23,7 +23,7 @@ export default function Home({ ip, geoData, isp, errorCode }) {
   }
 
   const arrowMotion = {
-    hover: { x: 10 },
+    hover: { x: 8 },
     click: { scale: 0.8 }
   };
 
@@ -54,7 +54,7 @@ export default function Home({ ip, geoData, isp, errorCode }) {
               <motion.img 
               alt='arrow-right' src={'icon-arrow.svg'} width={18} heigth={23}
               variants={arrowMotion}
-              transition={{ type: 'spring', bounce: 0.3, stiffness: 80 }}/>
+              transition={{ type: 'spring', bounce: 0.3 }}/>
             </motion.button>
 
           </form>
