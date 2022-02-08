@@ -1,1 +1,0 @@
-fix initial height of map on portrait
