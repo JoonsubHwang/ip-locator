@@ -23,8 +23,8 @@ export default function Home({ ip, geoData, isp, errorCode }) {
   }
 
   const arrowMotion = {
-    hover: { x: 5 },
-    click: { scale: 0.5 }
+    hover: { x: 7 },
+    click: { scale: 0.3 }
   };
 
   return (
