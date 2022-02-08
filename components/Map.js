@@ -19,10 +19,13 @@ export default function Map({ lat, lng, portraitMode }) {
     });
 
     window.addEventListener('resize', () => {
-      // FIXME doesnt apply accurately on the firt load
-      if (viewport !== undefined)
-        setViewport(Object.assign({}, viewport, {  width: window.innerWidth, height: getMapHeight() }));
+      setViewport(prevState => ({
+        ...prevState,
+        width: window.innerWidth, 
+        height: getMapHeight(),
+      }))
     });
+
 
   }, [ setViewport ]);
 
@@ -33,6 +36,7 @@ export default function Map({ lat, lng, portraitMode }) {
 
   }, [ lat, lng, setViewport ]);
 
+  // FIXME height doesnt apply accurately
   function getMapHeight() {
 
     const rem = 18; // 1rem = 18px
