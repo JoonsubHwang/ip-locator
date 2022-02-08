@@ -23,8 +23,8 @@ export default function Home({ ip, geoData, isp, errorCode }) {
   }
 
   const arrowMotion = {
-    hover: { x: 7 },
-    click: { scale: 0.3 }
+    hover: { scale: 1.3 },
+    click: { scale: 0.8 }
   };
 
   return (
@@ -52,7 +52,7 @@ export default function Home({ ip, geoData, isp, errorCode }) {
             whileHover='hover'
             whileTap='click'>
               <motion.img 
-              alt='arrow-right' src={'icon-arrow.svg'} width={16} heigth={16}
+              alt='arrow-right' src={'icon-arrow.svg'} width={18} heigth={23}
               variants={arrowMotion}/>
             </motion.button>
 
