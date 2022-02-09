@@ -1,34 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IP Locator
 
-## Getting Started
+[IP Locator](https://ip-locator-kayden.vercel.app) is an app which displays geological location of an IP adrress.
 
-First, run the development server:
+Preview:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+![Preview - Portrait](preview-portrait.png)
+![Preview - Landscape](preview-landscape.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br/>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+**Developer** <br/>
+Kayden Hwang <br/>
+[LinkedIn](https://www.linkedin.com/in/kayden-hwang-43639419b/)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+<br/><br/>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Table of Contents
+1. [Technologies Used](#Technologies-Used)
+2. [Features](#Features)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<br/><br/>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Technologies Used
+- [Node.js](https://nodejs.org/en/)
+- [Next.js](https://nextjs.org/) (+React)
+- [Sass](https://sass-lang.com/)
+- [GeoIP API](https://geo.ipify.org/)
+- [react-map-gl](https://github.com/visgl/react-map-gl)
+- [Framer](https://www.framer.com/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<br/><br/>
+
+
+<h2>Features</h2>
+
+
+> ### Server-side rendering
+> - Used [getServerSideProps](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props) to fetch data from an external API at request time and pass to props.
+> - Next.js pre-renders the page on server-side.
+> - Reduces page load time.
+
+
+> ### GeoIP API
+> - Used to lookup geological data of ip address.
+
+
+> ### react-map-gl
+> - Used to render an interactive map.
+> - One of the few libraries that can render interactive map on server-side.
+
+
+> ### Search IP address
+> - Searches client's IP address on initial load.
+> - Specific IP Address can be searched with query parameter or the searchbar.
+
+
+> ### Responsive design
+> - Layouts change to fit the screensize.
+> - Map's viewports also changes to fit the window.
+
+
+> ### Animation
+> - Used Framer to add animations for initial load, and events.
+> - Map's viewports also changes to fit the window.
+
+
+> ### Optimization
+> - Images are optimized with explicit `width` and `height`.
+> - Loads different image files depending on the screen size.
+
+
+<br/><br/>
+
+<br/><br/>
