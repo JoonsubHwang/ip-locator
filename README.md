@@ -12,9 +12,9 @@ This is a solution to the [IP address tracker challenge](https://www.frontendmen
 
 <br/>
 
-*Developed by* <br/>
-### Kayden Hwang <br/>
-[LinkedIn](https://www.linkedin.com/in/kayden-hwang-43639419b/)
+> *Developed by*
+> ### Kayden Hwang <br/>
+> [LinkedIn](https://www.linkedin.com/in/kayden-hwang-43639419b/)
 
 <br/><br/>
 
