@@ -2,15 +2,17 @@
 
 [IP Locator](https://ip-locator-kayden.vercel.app) is an app which displays geological location of an IP adrress.
 
-Preview:
+<br/>
 
-![Preview - Portrait](preview-portrait.png)
-![Preview - Landscape](preview-landscape.png)
+*Preview:*
+
+![Preview - Portrait](https://raw.githubusercontent.com/JoonsubHwang/ip-locator/main/preivew-portrait.png)
+![Preview - Landscape](https://raw.githubusercontent.com/JoonsubHwang/ip-locator/main/preivew-landscape.png)
 
 <br/>
 
-**Developer** <br/>
-Kayden Hwang <br/>
+*Developed by* <br/>
+### Kayden Hwang <br/>
 [LinkedIn](https://www.linkedin.com/in/kayden-hwang-43639419b/)
 
 <br/><br/>
