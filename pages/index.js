@@ -24,7 +24,7 @@ export default function Home({ ip, geoData, isp, errorCode }) {
 
   const arrowMotion = {
     hover: { x: 8 },
-    click: { scale: 0.8 }
+    click: { scale: 0.4 }
   };
 
   return (
