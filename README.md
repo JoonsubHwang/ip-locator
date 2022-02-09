@@ -63,8 +63,8 @@ This is a solution to the [IP address tracker challenge](https://www.frontendmen
 
 
 > ### Responsive design
-> - Layouts change to fit the screensize.
-> - Map's viewports also changes to fit the window.
+> - Layout changes to fit the screen size.
+> - Map's viewport also changes to fit the window.
 
 
 > ### Animation
