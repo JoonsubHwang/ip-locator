@@ -1,6 +1,7 @@
 # IP Locator
 
-[IP Locator](https://ip-locator-kayden.vercel.app) is an app which displays geological location of an IP adrress.
+[IP Locator](https://ip-locator-kayden.vercel.app) is an app which displays geological location of an IP adrress. <br/>
+This is a solution to the [IP address tracker challenge](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0) on Frontend Mentor.
 
 <br/>
 
