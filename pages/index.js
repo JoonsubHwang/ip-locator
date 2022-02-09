@@ -41,7 +41,7 @@ export default function Home({ ip, geoData, isp, errorCode }) {
 
         <div className={styles.top}>
 
-          <h1 className={styles.siteHeader}>IP Adress Tracker</h1>
+          <h1 className={styles.siteHeader}>IP Locator</h1>
 
           <form className={styles.searchbar} onSubmit={search}>
 
