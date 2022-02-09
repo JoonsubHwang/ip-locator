@@ -108,19 +108,20 @@ export default function Home({ ip, geoData, isp, errorCode }) {
 
 export async function getServerSideProps(context) {
 
-  console.log(context.req.headers["x-real-ip"])
-  console.log(context.req.connection.remoteAddress)
   const ip = context.query.ip || context.req.headers["x-real-ip"] || context.req.connection.remoteAddress;
   const query = `&ipAddress=${ip}&domain=${ip}`;
   const res = await fetch('https://geo.ipify.org/api/v2/country,city?apiKey=at_2PRS5e7SqDvOlKY8KR1YDwqGmrD7c' + query);
   const data = await res.json();
 
   if (data.code === 422 || data.code === 400)
-    return { props: { ip: ip, errorCode: data.code }};
+    return { props: { 
+      ip: ip, 
+      errorCode: data.code, 
+    }};
 
   return { props: {
     ip: data.ip,
     geoData: data.location,
-    isp: data.isp
+    isp: data.isp,
   }};
 }
