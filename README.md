@@ -29,7 +29,6 @@ This is a solution to the [IP address tracker challenge](https://www.frontendmen
 
 
 ## Technologies Used
-- [Node.js](https://nodejs.org/en/)
 - [Next.js](https://nextjs.org/) (+React)
 - [Sass](https://sass-lang.com/)
 - [GeoIP API](https://geo.ipify.org/)
