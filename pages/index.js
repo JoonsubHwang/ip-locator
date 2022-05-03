@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import styles from '../styles/Home.module.sass'
 import Map from '../components/Map';
 
-export default function Home({ ip, geoData, isp, errorCode }) {
+export default function Home({ ip, geoData, errorCode, errorMsg }) {
 
   const router = useRouter();
   const [portraitMode, setPortraitMode] = useState();
@@ -45,7 +45,7 @@ export default function Home({ ip, geoData, isp, errorCode }) {
 
           <form className={styles.searchbar} onSubmit={search}>
 
-            <input id='searchIP' placeholder='Search for IP address or domain' required defaultValue={ip}/>
+            <input id='searchIP' placeholder='Search for IP address' required defaultValue={ip}/>
 
             <motion.button
             initial={{}}
@@ -60,10 +60,17 @@ export default function Home({ ip, geoData, isp, errorCode }) {
           </form>
           
           {errorCode !== undefined &&
-          <div className={styles.errorInfo}>
-            <p className={styles.red}><span className={styles.message}>Invalid IP Address / domain: </span>{ip}</p>
-            <p>Please search a valid IP address / domain.</p>
-          </div>}
+            errorCode === 404 ?
+            <div className={styles.errorInfo}>
+              <p className={styles.red}><span className={styles.message}>Invalid IP Address: </span>{ip}</p>
+              <p>Please search a valid IP address.</p>
+            </div>
+            : 
+            <div className={styles.errorInfo}>
+              <p>There is an error with an external API (Positionstack).</p>
+              <p className={styles.red}>{errorCode} <span className={styles.message}>{errorMsg}</span></p>
+            </div>
+          }
 
           {geoData !== undefined &&
           <div className={styles.summary}>
@@ -83,15 +90,15 @@ export default function Home({ ip, geoData, isp, errorCode }) {
             {portraitMode && <div className={styles.divider}/>}
 
             <div className={styles.dataDisplay}>
-              <small>TIMEZONE</small>
-              <p>UTC {geoData.timezone}</p>
+              <small>Country</small>
+              <p>{geoData.country}</p>
             </div>
 
             {portraitMode && <div className={styles.divider}/>}
 
             <div className={styles.dataDisplay}>
-              <small>ISP</small>
-              <p>{isp}</p>
+              <small>TIMEZONE</small>
+              <p>UTC {geoData.timezone}</p>
             </div>
 
           </div>}
@@ -109,18 +116,34 @@ export default function Home({ ip, geoData, isp, errorCode }) {
 export async function getServerSideProps(context) {
 
   const ip = context.query.ip || context.req.headers["x-real-ip"] || context.req.connection.remoteAddress;
-  const res = await fetch('https://geo.ipify.org/api/v2/country,city?apiKey=at_2PRS5e7SqDvOlKY8KR1YDwqGmrD7c' + `&ipAddress=${ip}&domain=${ip}`);
-  const data = await res.json();
+  const key = 'ae55e3665351db51be801d4c526c6f3f';
+  let res = await fetch(`http://api.positionstack.com/v1/reverse?access_key=${key}&limit=1&timezone_module=1&query=${ip}`);
+  res = await res.json();
 
-  if (data.code === 422 || data.code === 400)
+  if (res.error !== undefined)
     return { props: { 
       ip: ip, 
-      errorCode: data.code, 
+      errorCode: res.error.code, 
+      errorMsg: res.error.message, 
+    }};
+  else if (res.data.length === 0)
+    return { props: { 
+      ip: ip, 
+      errorCode: 404, 
     }};
 
+  const data = res.data[0];
+
   return { props: {
-    ip: data.ip,
-    geoData: data.location,
-    isp: data.isp,
+    ip: ip,
+    geoData: {
+      city: data.label.split(', ')[1],
+      region: data.region,
+      postalCode: data['postal_code'],
+      country: data.country,
+      timezone: data['timezone_module']['offset_string'],
+      lat: data.latitude,
+      lng: data.longitude,
+    },
   }};
 }
