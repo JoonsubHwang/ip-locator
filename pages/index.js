@@ -60,7 +60,7 @@ export default function Home({ ip, geoData, errorCode, errorMsg }) {
           </form>
           
           {errorCode !== undefined &&
-            errorCode === 404 ?
+            errorCode === 'validation_error' || errorCode === 404 ?
             <div className={styles.errorInfo}>
               <p className={styles.red}><span className={styles.message}>Invalid IP Address: </span>{ip}</p>
               <p>Please search a valid IP address.</p>
